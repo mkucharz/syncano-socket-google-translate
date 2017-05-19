@@ -1,6 +1,6 @@
 name: google-translate
 description: Description of google-translate
-version: 0.0.2
+version: 0.0.3
 config:
   API_KEY:
     description: Google Translate API key
