@@ -1,0 +1,38 @@
+machine:
+  node:
+    version: 7
+  environment:
+    YARN_VERSION: 0.19.1
+    PATH: "${PATH}:${HOME}/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+
+dependencies:
+  pre:
+    - |
+      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
+        echo "Download and install Yarn."
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+      else
+        echo "The correct version of Yarn is already installed."
+      fi
+  override:
+    - yarn global add syncano-cli@beta
+
+test:
+  override:
+    - exit 0
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - syncano-cli submit ${SOCKET_NAME} -b patch:
+      - git config --global user.email $GITHUB_EMAIL && git config --global user.name $GITHUB_NAME
+      - git commit -a -m "Bumping version [ci skip]" && git push origin $CIRCLE_BRANCH
+
+
+experimental:
+  notify:
+    branches:
+      only:
+        - master
+        - devel
