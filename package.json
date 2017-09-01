@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "google-translate": "^2.0.4",
+    "langs": "^2.0.0",
     "syncano-server": "^0.8.1"
   }
 }
