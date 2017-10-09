@@ -8,11 +8,7 @@ config:
       Got to https://console.cloud.google.com/apis/credentials to obtain the API
       key
     required: true
+
 endpoints:
   translate:
     description: Handling translation requests
-    file: scripts/translate.js
-event_handlers:
-  events.translate:
-    description: Handling translation requests
-    file: scripts/translate.js
