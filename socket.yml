@@ -1,6 +1,6 @@
 name: google-translate
 description: Description of google-translate
-version: 0.0.8
+version: 0.0.9
 config:
   API_KEY:
     description: Google Translate API key
@@ -8,7 +8,6 @@ config:
       Got to https://console.cloud.google.com/apis/credentials to obtain the API
       key
     required: true
-
 endpoints:
   translate:
     description: Handling translation requests
